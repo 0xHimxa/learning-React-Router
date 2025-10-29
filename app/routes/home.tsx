@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import type { Route } from "./+types/home";
 
 
@@ -9,5 +10,8 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <>hello</>;
+
+  const name = useSelector((state:any)=> state.user.userName)
+
+  return <>hello {name}</>;
 }

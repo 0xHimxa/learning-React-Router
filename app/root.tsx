@@ -10,6 +10,10 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { useState,createContext } from "react";
+
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -34,7 +38,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <Provider store={store}>
+          {children}
+        </Provider>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -42,14 +48,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+
+
 export default function App() {
-  return( <>
+
+    const [userName ,setusername]= useState('himxa')
+    
+  
+  return( <>``
 
 
 {/* check more about this navlink, it active state visited */}
 {/*  check more about Link to */}
 
   <NavLink to="/" style={({isActive})=> ({color: isActive ? 'red': 'blue'})}> Home </NavLink>
+  <NavLink to="/about" style={({isActive})=> ({color: isActive ? 'red': 'blue'})}> About </NavLink>
   
   <Outlet />
   
